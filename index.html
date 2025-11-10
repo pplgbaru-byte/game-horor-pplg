@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PANTANGAN BUANG AIR KECIL SEMBARANGAN</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=MedievalSharp&display=swap" rel="stylesheet">
+
+    <style>
+        /* Background video */
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* biar videonya isi penuh layar */
+            z-index: -2; /* di belakang semua elemen */
+            filter: brightness(40%); /* bikin agak gelap biar teks tetap kebaca */
+        }
+
+        /* Optional overlay merah darah halus */
+        .blood-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background video -->
+    <video id="bg-video" autoplay muted loop>
+        <source src="Horror.mp4" type="video/mp4">
+        Browser kamu tidak mendukung video tag.
+    </video>
+
+    <canvas id="gameCanvas"></canvas>
+    <div class="blood-overlay"></div>
+    
+    <div class="container">
+        <div class="title-container">
+            <h1 class="game-title">PANTANGAN</h1>
+            <h2 class="game-subtitle">BUANG AIR KECIL SEMBARANGAN</h2>
+            <div class="title-decoration"></div>
+        </div>
+        
+        <div class="button-container">
+            <a href="./game-horor-pplg/index.html">
+                <button class="game-btn play-btn" id="play-btn">
+                <span class="btn-text">PLAY</span>
+                <span class="btn-glow"></span>
+            </button>
+            </a>
+            <button class="game-btn continue-btn">
+                <span class="btn-text">CONTINUE</span>
+                <span class="btn-glow"></span>
+            </button>
+        </div>
+        
+        <div class="game-info">
+            <p>Enter if you dare...</p>
+        </div>
+    </div>
+    
+    <div class="candle-effect"></div>
+
+    <!-- Audio background -->
+    <audio id="bg-audio" autoplay loop hidden>
+        <source src="scary-music-box-165983.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Audio untuk efek tombol PLAY -->
+    <audio id="play-sound" hidden>
+        <source src="zombie-screech-sound-effect-312865.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Autoplay background audio setelah user interaksi pertama
+        window.addEventListener('click', () => {
+            const bgAudio = document.getElementById('bg-audio');
+            bgAudio.play();
+        }, { once: true });
+
+        // Efek suara saat tombol PLAY ditekan
+        document.getElementById('play-btn').addEventListener('click', () => {
+            const playSound = document.getElementById('play-sound');
+            playSound.currentTime = 0;
+            playSound.play();
+
+            console.log("Game dimulai...");
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>
